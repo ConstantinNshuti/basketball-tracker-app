@@ -1,0 +1,15 @@
+
+<p-card header="{{team.full_name}} [{{team.abbreviation}}]" subheader="{{team.conference}} conference">
+    <p>
+       Scores of past 12 days:
+    </p>
+    <ng-template *ngIf="team.games.length>0" ngFor let-item1 [ngForOf]="team.games">
+        <p> <strong>{{item1.home_team_abbreviation}} </strong> {{item1.home_team_score}} - {{item1.visitor_team_score}} <strong>{{item1.visitor_team_abbreviation}}</strong></p>
+
+    </ng-template>
+    <p *ngIf="team.games.length==0"><strong> There hasn't been a game in the last 12 days.</strong></p>
+
+    <ng-template pTemplate="footer">
+        <p-button routerLink="home" label="<< Back to all team stats"  class="p-button-success"></p-button>
+    </ng-template>
+</p-card>

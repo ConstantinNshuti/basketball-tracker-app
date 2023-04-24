@@ -1,0 +1,22 @@
+
+<p-card header="{{team.full_name}} [{{team.abbreviation}}]" subheader="{{team.conference}} conference">
+    <p-image src="{{team.imageURL}}" alt="Image" height="100" width="100"></p-image>
+    <p>
+       Results of past 12 days:
+    </p>
+    <ng-template *ngIf="wonLost.length>0" ngFor let-item1 [ngForOf]="wonLost">
+        <p-tag *ngIf="item1" value="W" severity="success" class="mr-2" [rounded]="true"></p-tag>
+        <p-tag *ngIf="!item1" value="L" severity="danger" class="mr-2" [rounded]="true"></p-tag>
+      </ng-template>
+
+    <p *ngIf="wonLost.length==0"><strong> There hasn't been a game in the last 12 days.</strong></p>
+    <!--Wonn or lost-->
+    <p *ngIf="avgScored">Avg pts scored: {{avgScored | number: '1.0-0' }}</p>
+    <p *ngIf="avgConceded">Avg pts conceded: {{avgConceded | number: '1.0-0' }}</p>
+    <p *ngIf="!avgScored">Avg pts scored: 0</p>
+    <p *ngIf="!avgConceded">Avg pts conceded: 0</p>
+    <ng-template pTemplate="footer">
+        <p-button  routerLink="/result/{{team.teamId}}" label="See game results >>"  class="p-button-success"></p-button>
+        <p-button label="Close" (onClick)="deleteTeam(team.teamId)" styleClass="p-button-danger" [style]="{ 'margin-left': '.5em' }"></p-button>
+    </ng-template>
+</p-card>

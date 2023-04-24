@@ -1,0 +1,18 @@
+<h1>NBA Score Tracking App</h1>
+<p-dropdown class="mx-2" id="teamSelet" optionLabel="full_name" [options]="teams" [(ngModel)]="selectedTeam"></p-dropdown>
+<p-button id="trackBtn" (onClick)="onSelect(selectedTeam)" label="Track team"></p-button>
+<div class="flex flex-column md:flex-row grid gap-4 mt-4">
+    <ng-template ngFor let-item [ngForOf]="nbaService.teams" let-i="index">
+        <div
+        class="card col-12 md:col-3 mb-0"
+        [ngClass]="{ 'flex-1': (i + 1) % 4 == 0 && i != 0 }"
+        >
+        <app-team [team]="item"></app-team>
+        </div>
+    </ng-template>
+
+</div>
+
+
+
+       
